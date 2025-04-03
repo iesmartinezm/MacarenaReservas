@@ -1,68 +1,80 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Macarena Reservas
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Este proyecto es una aplicación web de gestión de reservas para un restaurante. Permite a los usuarios hacer reservas en mesas disponibles, ver las reservas realizadas y gestionar los horarios y las mesas.
 
-## About Laravel
+## Descripción
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+La aplicación está diseñada para que los usuarios puedan:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+1. **Realizar reservas**: Seleccionando la mesa, la fecha y la hora.
+2. **Ver las reservas realizadas**: Una lista de todas las reservas existentes con la posibilidad de eliminarlas.
+3. **Gestionar las mesas**: Las mesas están organizadas por zonas y pueden ser asignadas a una reserva.
+4. **Administrar roles de usuario**: Los usuarios pueden tener diferentes roles definidos en el sistema.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Funcionalidades
 
-## Learning Laravel
+- **Gestión de reservas**: Los usuarios pueden reservar mesas para una fecha y hora específicas.
+- **Zonas y mesas**: Las mesas están organizadas en diferentes zonas, permitiendo asignar una mesa a una reserva de forma eficiente.
+- **Notificación de disponibilidad**: Si una mesa ya está reservada en el horario seleccionado, el sistema mostrará un mensaje de error y no permitirá realizar la reserva.
+- **Control de roles**: Los usuarios tienen diferentes roles, y los administradores pueden gestionar las reservas y las mesas.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Relaciones entre los Modelos
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- **Rol - Usuario**: Un rol puede tener muchos usuarios (1:N).
+- **Usuario - Reserva**: Un usuario puede hacer muchas reservas (1:N).
+- **Zona - Mesa**: Una zona puede tener muchas mesas (1:N).
+- **Mesa - Reserva**: Una mesa puede estar en muchas reservas (1:N).
+- **Reserva - Mesa y Usuario**: Cada reserva pertenece a una mesa y a un usuario (N:1).
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Estructura de la Base de Datos
 
-## Laravel Sponsors
+La aplicación tiene las siguientes tablas principales en la base de datos:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+- **Usuarios**: Guarda la información de los usuarios que realizan reservas. Cada usuario tiene un correo electrónico y un rol.
+- **Roles**: Define los roles disponibles en el sistema (por ejemplo, administrador, cliente).
+- **Mesas**: Representa las mesas disponibles en el restaurante, asociadas a una zona.
+- **Zonas**: Las zonas son grupos de mesas, cada zona puede tener varias mesas.
+- **Reservas**: Contiene las reservas realizadas por los usuarios, asociadas a una mesa y un usuario.
 
-### Premium Partners
+## Flujo de la Aplicación
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+1. **Creación de un Usuario**: Los usuarios deben introducir su nombre y correo electrónico para poder realizar reservas.
+2. **Creación de una Reserva**: Los usuarios seleccionan una mesa, definen la hora de inicio y fin, y el número de comensales. Si la mesa ya está reservada para el horario solicitado, el sistema mostrará un mensaje de error.
+3. **Listado de Reservas**: Los administradores pueden ver todas las reservas realizadas y tienen la opción de eliminar alguna de ellas.
 
-## Contributing
+## Requisitos del sistema
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Requisitos del entorno para la puesta en marcha de la aplicación:
 
-## Code of Conduct
+1. **PHP**: Versión 8.0 o superior.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+2. **Laravel**: Versión 8.x o superior.
 
-## Security Vulnerabilities
+3. **Base de Datos**: MySQL 5.7 o superior.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+4. **Servidor web**: Apache o Nginx.
 
-## License
+5. **Composer**
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Metodología de desarrollo
 
+1. **Principales tecnologías utilizadas**: Laravel, Blade, Eloquent ORM, Bootstrap, etc.
 
+2. **Enfoque del diseño**: MVC (Modelo-Vista-Controlador).
+
+## Estructura del Proyecto
+
+- **app/Http/Controllers**: Contiene los controladores que gestionan la lógica de la aplicación, como la creación, visualización y eliminación de reservas.
+
+- **app/Models**: Contiene los modelos de la base de datos, como Reserva, Mesa, Usuario, etc.
+
+- **resources/views**: Contiene las vistas Blade que se renderizan para mostrar las páginas al usuario, como la creación de reservas y el listado de reservas.
+
+- **database/migrations**: Contiene las migraciones que definen la estructura de las tablas de la base de datos.
+
+- **database/seeders**: Contiene los seeders para agregar datos de prueba a la base de datos.
+
+## Validaciones
+- **Fecha de inicio y fin**: La fecha de fin debe ser posterior a la fecha de inicio.
+
+- **Número de comensales**: Se valida que el número de comensales sea un valor positivo.
