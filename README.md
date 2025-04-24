@@ -1,6 +1,7 @@
 # Macarena Reservas
 
 Este proyecto es una aplicación web de gestión de reservas para un restaurante. Permite a los usuarios hacer reservas en mesas disponibles, ver las reservas realizadas y gestionar los horarios y las mesas.
+Para acceder hay que entrar en la ruta 127.0.0.1:8000/reservas.
 
 ## Descripción
 
@@ -78,3 +79,32 @@ Requisitos del entorno para la puesta en marcha de la aplicación:
 - **Fecha de inicio y fin**: La fecha de fin debe ser posterior a la fecha de inicio.
 
 - **Número de comensales**: Se valida que el número de comensales sea un valor positivo.
+
+## Pruebas Automáticas
+La aplicación cuenta con un conjunto de pruebas automáticas para garantizar que las funcionalidades clave estén funcionando correctamente. Las pruebas se ejecutan utilizando PEST.
+
+**Funcionalidades Cubiertas por las Pruebas:**
+1. Acceso a la vista de listado de reservas: Verifica que los usuarios pueden acceder correctamente a la página de listado de reservas.
+
+2. Creación de reservas: Verifica que los usuarios puedan crear una reserva válida que se guarde en la base de datos.
+
+3. Prevención de solapamiento de reservas: Verifica que el sistema no permita la creación de reservas con horarios que se solapen con otras reservas existentes.
+
+4. Acceso a la página de creación de reservas: Verifica que los usuarios puedan acceder correctamente a la página para crear una nueva reserva.
+
+5. Edición de reservas: Verifica que los usuarios puedan editar una reserva existente correctamente.
+
+6. Eliminación de reservas: Verifica que los usuarios puedan eliminar una reserva y que esta desaparezca de la base de datos.
+
+**Mensajes de Éxito en las Pruebas:**
+1. "Puede acceder al listado de reservas."
+
+2. "Puede crear una reserva."
+
+3. "Evita solapar las horas de las reservas."
+
+4. "Puede acceder a la página de reservas."
+
+5. "Puede editar una reserva."
+
+6. "Puede eliminar una reserva."
