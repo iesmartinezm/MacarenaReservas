@@ -81,7 +81,7 @@ Requisitos del entorno para la puesta en marcha de la aplicación:
 - **Número de comensales**: Se valida que el número de comensales sea un valor positivo.
 
 ## Pruebas Automáticas
-La aplicación cuenta con un conjunto de pruebas automáticas para garantizar que las funcionalidades clave estén funcionando correctamente. Las pruebas se ejecutan utilizando PEST.
+La aplicación cuenta con un conjunto de pruebas automáticas para garantizar que las funcionalidades clave estén funcionando correctamente. Las pruebas se ejecutan utilizando PEST con el comando 'php artisan test'.
 
 **Funcionalidades Cubiertas por las Pruebas:**
 1. Acceso a la vista de listado de reservas: Verifica que los usuarios pueden acceder correctamente a la página de listado de reservas.
